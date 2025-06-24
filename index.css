@@ -1,0 +1,242 @@
+.img {
+  padding-bottom: 170%;
+  width: 40px;
+  height: 40px;
+}
+li {
+  color: rgba(33, 33, 33, 0.982);
+}
+body {
+  background: url("./abstract-digital-grid-black-background_53876-97647.avif");
+  background-repeat: no-repeat;
+  background-size: cover; /* Make it cover the screen */
+  background-repeat: no-repeat; /* No repeat */
+  background-position: center center; /* Center the image */
+  background-attachment: fixed;
+  display: flex;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+header .navbar {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.navbar .menu-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.navbar a {
+  color: black;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.navbar a:hover {
+  color: black;
+}
+.btn {
+  padding: 10px 20px;
+  background-color: #adff2f;
+  color: #adff2f;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  background-color: #adff2f;
+  /* -webkit-box-reflect: below 1px
+    linear-gradient(transparent, rgba(144, 236, 16, 0));
+  box-shadow: 0 0 5px #adff2f, 0 0 15px #adff2f, 0 0 25px #adff2f,
+    0 0 100px #adff2f; */
+
+  color: black 1px sold;
+  transform: scale(1.05);
+}
+/* .glass { */
+/* From https://css.glass 
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.7px);
+  -webkit-backdrop-filter: blur(3.7px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}*/
+
+button {
+  background: #adff2f;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 5px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.todo {
+  position: absolute;
+  margin-top: 680px;
+  right: 10px;
+}
+#menu {
+  display: none;
+  color: white;
+  cursor: pointer;
+}
+
+#close-btn {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 101;
+  cursor: pointer;
+}
+
+#menu-btn {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  background-color: white;
+  padding: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  header {
+    padding: 10px 20px;
+  }
+  header.navbar-toggler-icon::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+  }
+
+  .navbar .menu-links {
+    position: fixed;
+    left: -260;
+    top: 0;
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    padding: 70px 20px 0;
+    transition: left 0.3s ease;
+    z-index: 100;
+  }
+
+  .navbar .menu-links {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    padding: 70px 40px 0;
+    transition: left 0.15s ease;
+  }
+
+  header .navbar-toggler-icon .navbar .menu-links {
+    left: 0;
+  }
+
+  header .navbar-toggler-icon .navbar .menu-links {
+    left: 0;
+  }
+
+  .navbar a {
+    color: black;
+  }
+
+  body.show-mobile-menu .navbar .menu-links {
+    left: 0;
+  }
+
+  #menu-btn {
+    display: block;
+  }
+
+  #close-btn {
+    display: block;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 40px; /* Adds space between the cards */
+  justify-content: center;
+  padding: 40px;
+}
+
+.card {
+  width: 350px;
+  background: #1c1c1c;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.i1 {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 2px solid cyan;
+}
+
+.intro {
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 14px;
+}
+
+.intro h1 {
+  margin-top: 0;
+  font-size: 24px;
+  color: cyan;
+}
+
+.intro ol {
+  padding-left: 20px;
+}
+
+.intro li {
+  margin-bottom: 8px;
+}
+li {
+  color: #fff;
+}
