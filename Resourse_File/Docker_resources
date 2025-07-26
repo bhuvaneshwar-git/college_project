@@ -1,0 +1,9 @@
+### WEBSITE LINK FOR CONFIGURING TIGER VNC + NO VNC + DOCKER INTEGRATION 
+
+- for configuring tigervnc in ubuntu - https://www.cyberciti.biz/faq/install-and-configure-tigervnc-server-on-ubuntu-18-04/
+- if it not works try this - https://raspberrytips.com/tigervnc-server-on-ubuntu/
+- Ubuntu GUI inside Docker + VNC server setup - https://akhilsharmaa.medium.com/ubuntu-gui-inside-docker-vnc-server-setup-f601687ec66d
+
+- View a Docker container’s display using VNC Viewer - https://qxf2.com/blog/view-docker-container-display-using-vnc-viewer/
+
+NOTE - THis is old but this full of detailed informations
