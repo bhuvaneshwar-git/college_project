@@ -5,6 +5,7 @@
 - Ubuntu GUI inside Docker + VNC server setup - https://akhilsharmaa.medium.com/ubuntu-gui-inside-docker-vnc-server-setup-f601687ec66d
 - configure vnc server in ubuntu  - https://parth-vijay.medium.com/configure-vnc-server-ac35c2ab049b
 - View a Docker container’s display using VNC Viewer - https://qxf2.com/blog/view-docker-container-display-using-vnc-viewer/
+- ubuntu doc - https://help.ubuntu.com/community/VNC/Servers
 
 NOTE - THis is old but this full of detailed informations
 
