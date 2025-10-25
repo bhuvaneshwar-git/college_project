@@ -11,184 +11,171 @@
   <script src="./index.js" defer></script>
 
   <style>
-    /* Cleaned and merged button styles */
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
- .next-btn {
-  position: absolute; /* or fixed if you want it to stick during scroll */
-  bottom: 20px;
-  right: 20px;
+    body {
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      background-size: 400% 400%;
+      animation: bgAnimation 12s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-  padding: 8px 16px;
-  margin: 0; /* ✅ Removes default margin */
-  border: none;
-  border-radius: 10px;
-  font-size: 14px;
-  z-index: 999;
-}
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-/* Remove any list-style or block-level formatting if inherited */
-.next-btn {
-  display: block;
-}
+    /* Navbar and Button */
+    .navbar .menu-links {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
 
-/* Ensure parent doesn't cause layout issues */
-body,
-section,
-div {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-    button {
-      background: #adff2f;
-      color: black;
-      outline: none;
+    .navbar button {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: #fff;
       border: none;
       font-size: 1rem;
-      font-weight: 500;
-      padding: 12px 24px;
-      border-radius: 10px;
+      font-weight: 600;
+      padding: 12px 26px;
+      border-radius: 8px;
       cursor: pointer;
-      position: absolute;
-      top: 700px;
-      right: 10px;
-      transition: background-color 0.3s, transform 0.2s;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 114, 255, 0.6);
     }
 
-    button:hover {
-      background: #adff2f;
-      transform: scale(1.05);
+    .navbar button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 20px rgba(0, 114, 255, 0.9);
     }
 
-    /* Responsive Button */
- 
-    .navbar .menu-links {
+    /* Hero Section */
+    .hero-section {
       display: flex;
-      gap: 40px;
-    }
-
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-
-    .navbar a:hover {
-      color: white;
-    }
-
-    .bg-span {
-      display: inline-block;
-      width: 500px;
-      height: 500px;
-      background-image: url('your-image.jpg');
-      background-size: cover;
-      background-position: center;
-      color: white;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
       text-align: center;
-      line-height: 100px;
-      border-radius: 16px;
-      backdrop-filter: blur(3.7px);
-      -webkit-backdrop-filter: blur(3.7px);
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 0 20px;
     }
 
-    .typewriter {
-      display: inline-block;
-    }
-
-    .text {
-      font-size: 2em;
-      letter-spacing: 10px;
-      font-family: monospace;
-      border-right: 5px solid;
+    /* Animated Title */
+    .typewriter h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #00c6ff, #7ee8fa, #0072ff);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: typing 4s steps(30), blink 0.8s step-end infinite alternate, glowText 6s linear infinite;
       white-space: nowrap;
+      border-right: 4px solid #00c6ff;
       overflow: hidden;
-      animation:
-        typing 5s steps(30),
-        cursor 0.8s step-end infinite alternate;
-    }
-
-    @keyframes cursor {
-      50% { border-color: transparent; }
+      letter-spacing: 3px;
+      margin-bottom: 30px;
     }
 
     @keyframes typing {
       from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes glowText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Paragraphs */
+    ol {
+      list-style: none;
+      max-width: 800px;
+    }
+
+    ol li {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #e0e0e0;
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 1.6;
     }
 
     .para {
-      color: white;
-      font-size: 1.8em;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      color: #7ee8fa;
+      font-size: 1.3rem;
     }
 
-    .hero-section .content h1 {
-      font-size: 3rem;
-      max-width: 600px;
-      color: #adff2f;
+    .text-green {
+      color: #00ff88;
+      font-size: 1.2rem;
+      font-family: 'Courier New', monospace;
+      text-align: left;
+      margin-top: 10px;
+      animation: fadeIn 3s ease-in-out;
     }
 
-    .hero-section .content h2 {
-      font-weight: 300;
-      margin-top: 15px;
-      max-width: 600px;
-      color: white;
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @media screen and (max-width: 900px) {
-      .hero-section .content {
-        text-align: center;
+      .typewriter h1 {
+        font-size: 2rem;
       }
-
-      .hero-section .content :is(h1, p) {
-        max-width: 100%;
+      h2 {
+        font-size: 1.1rem;
       }
-
-      .hero-section .content h1 {
-        font-size: 2.3rem;
-        line-height: 60px;
-      }
-
-      .hero-section .content button {
-        padding: 9px 18px;
+      .para {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-
   <div class="navbar">
     <div class="menu-links">
-      <a href="http://127.0.0.1:5500/index.html">
-        <button type="button">Next</button>
-     
-
-      </a>
+      <a href="./index.html"><button type="button">Next</button></a>
     </div>
   </div>
 
   <section class="hero-section">
     <div class="content">
       <div class="typewriter">
-        <h1 class="text">Welcome to web 🌐</h1>
+        <h1>Welcome to Virtual OS 🌐</h1>
       </div>
 
       <ol>
         <li>
           <h2>
-            A Virtual Lab for Operating Systems simulates the behavior of a real OS environment,
-            allowing users to learn, test, and execute system-level programs without needing actual hardware.
+            A Virtual Lab for Operating Systems simulates real OS behavior —
+            learn, test, and execute system-level programs without hardware setup.
           </h2>
         </li>
         <li class="para">
-          🧠 Understand Our Virtual OS Lab — it’s a fully interactive platform designed to simulate core OS concepts
-          like process scheduling, memory management, and file systems. Built for hands-on learning.
+          🧠 Understand our Virtual OS Lab — an interactive platform built to simulate OS concepts like
+          process scheduling, memory management, and file systems — made for hands-on learning.
         </li>
-        <li style="color: blue; font-size: 2em;" class="text">
+        <li class="text-green">
           > Initializing kernel...<br>
           > Mounting virtual file system...<br>
           > Launching interactive shell...
@@ -197,6 +184,5 @@ div {
     </div>
   </section>
 
-  <div class="images"></div>
 </body>
 </html>
