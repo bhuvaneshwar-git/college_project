@@ -1,0 +1,445 @@
+.img {
+  padding-bottom: 170%;
+  width: 40px;
+  height: 40px;
+}
+li {
+  color: rgba(33, 33, 33, 0.982);
+}
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  background-size: 400% 400%;
+  animation: bgAnimation 12s ease infinite;
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes bgAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Grid Layer */
+.grid-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moveGrid 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes moveGrid {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+/* Content Above Background */
+.hero-section,
+.navbar {
+  position: relative;
+  z-index: 10;
+}
+
+body {
+  background-repeat: no-repeat;
+  background-size: cover; /* Make it cover the screen */
+  background-repeat: no-repeat; /* No repeat */
+  background-position: center center; /* Center the image */
+  background-attachment: fixed;
+  display: flex;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+header .navbar {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.navbar .menu-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.navbar a {
+  color: black;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.navbar a:hover {
+  color: black;
+}
+.btn {
+  padding: 10px 20px;
+  background-color: #adff2f;
+  color: #adff2f;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  background-color: #adff2f;
+  /* -webkit-box-reflect: below 1px
+    linear-gradient(transparent, rgba(144, 236, 16, 0));
+  box-shadow: 0 0 5px #adff2f, 0 0 15px #adff2f, 0 0 25px #adff2f,
+    0 0 100px #adff2f; */
+
+  color: black 1px sold;
+  transform: scale(1.05);
+}
+/* .glass { */
+/* From https://css.glass 
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.7px);
+  -webkit-backdrop-filter: blur(3.7px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}*/
+
+button {
+  background: #adff2f;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 5px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.todo {
+  position: absolute;
+  margin-top: 680px;
+  right: 10px;
+}
+#menu {
+  display: none;
+  color: white;
+  cursor: pointer;
+}
+
+#close-btn {
+  display: none; /* Show only when mobile menu is active */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 101;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.2); /* semi-transparent neon blue */
+  color: #00d4ff; /* neon blue text/icon */
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+#close-btn:hover {
+  background: rgba(0, 212, 255, 0.4); /* brighter on hover */
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.9);
+}
+
+#menu-btn {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  background-color: white;
+  padding: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  header {
+    padding: 10px 20px;
+  }
+  header.navbar-toggler-icon::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+  }
+
+  .navbar .menu-links {
+    position: fixed;
+    left: -260;
+    top: 0;
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    padding: 70px 20px 0;
+    transition: left 0.3s ease;
+    z-index: 100;
+  }
+
+  .navbar .menu-links {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    padding: 70px 40px 0;
+    transition: left 0.15s ease;
+  }
+
+  header .navbar-toggler-icon .navbar .menu-links {
+    left: 0;
+  }
+
+  header .navbar-toggler-icon .navbar .menu-links {
+    left: 0;
+  }
+
+  .navbar a {
+    color: black;
+  }
+
+  body.show-mobile-menu .navbar .menu-links {
+    left: 0;
+  }
+
+  #menu-btn {
+    display: block;
+  }
+
+  #close-btn {
+    display: block;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 40px; /* Adds space between the cards */
+  justify-content: center;
+  padding: 40px;
+}
+
+.card {
+  width: 350px;
+  background: #1c1c1c;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.i1 {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 2px solid cyan;
+}
+
+.intro {
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 14px;
+}
+
+.intro h1 {
+  margin-top: 0;
+  font-size: 24px;
+  color: cyan;
+}
+
+.intro ol {
+  padding-left: 20px;
+}
+
+.intro li {
+  margin-bottom: 8px;
+}
+li {
+  color: #fff;
+}
+/* Attractive Gradient Buttons */
+.btn {
+  padding: 10px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glowing effect on hover */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.4),
+    transparent 60%
+  );
+  transform: scale(0);
+  transition: transform 0.4s ease;
+}
+
+.btn:hover::before {
+  transform: scale(1);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  box-shadow: 0 0 20px rgba(0, 166, 255, 0.8);
+}
+.card {
+  width: 330px;
+  background: linear-gradient(145deg, #181818, #0f0f0f);
+  color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.35), 0 0 20px rgba(0, 255, 200, 0.25);
+}
+
+/* Image section */
+.i1 {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  transition: all 0.4s ease;
+}
+
+.card:hover .i1 {
+  filter: brightness(1.1) saturate(1.2);
+}
+
+/* Text section */
+.intro {
+  padding: 20px 25px;
+  font-family: "Poppins", sans-serif;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  line-height: 1.6;
+}
+
+.intro h1 {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, #00c6ff, #00ffcc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.intro p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+/* List styling */
+.intro ol {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.intro li {
+  color: rgba(240, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+/* Button inside card */
+.card .btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  box-shadow: 0 0 15px rgba(0, 166, 255, 0.4);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card .btn:hover {
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+  transform: scale(1.05);
+}

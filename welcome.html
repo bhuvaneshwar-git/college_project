@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual OS Lab</title>
+
+  <!-- External CSS and Font Awesome -->
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="./index.js" defer></script>
+ 
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      background-size: 400% 400%;
+      animation: bgAnimation 12s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar and Button */
+    .navbar .menu-links {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+
+    .navbar button {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: #fff;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 12px 26px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 114, 255, 0.6);
+    }
+
+    .navbar button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 20px rgba(0, 114, 255, 0.9);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* Animated Title */
+    .typewriter h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #00c6ff, #7ee8fa, #0072ff);
+      background-size: 300%;
+      background-clip: text;
+      color: transparent;
+      animation: typing 4s steps(30), blink 0.8s step-end infinite alternate, glowText 6s linear infinite;
+      white-space: nowrap;
+      border-right: 4px solid #00c6ff;
+      overflow: hidden;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes glowText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Paragraphs */
+    ol {
+      list-style: none;
+      max-width: 800px;
+    }
+
+    ol li {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #e0e0e0;
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 1.6;
+    }
+
+    .para {
+      color: #7ee8fa;
+      font-size: 1.3rem;
+    }
+
+    .text-green {
+      color: #00ff88;
+      font-size: 1.2rem;
+      font-family: 'Courier New', monospace;
+      text-align: left;
+      margin-top: 10px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 900px) {
+      .typewriter h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+      .para {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="menu-links">
+      <a href="./Home.html"><button type="button">Next</button></a>
+    </div>
+  </div>
+
+  <section class="hero-section">
+    <div class="content">
+      <div class="typewriter">
+        <h1>Welcome to Virtual OS 🌐</h1>
+      </div>
+
+      <ol>
+        <li>
+          <h2>
+            A Virtual Lab for Operating Systems simulates real OS behavior —
+            learn, test, and execute system-level programs without hardware setup.
+          </h2>
+        </li>
+        <li class="para">
+          🧠 Understand our Virtual OS Lab — an interactive platform built to simulate OS concepts like
+          process scheduling, memory management, and file systems — made for hands-on learning.
+        </li>
+        <li class="text-green">
+          > Initializing kernel...<br>
+          > Mounting virtual file system...<br>
+          > Launching interactive shell...
+        </li>
+      </ol>
+    </div>
+  </section>
+  <!-- <h1>🎉 Welcome! You are successfully logged in.</h1>
+    <button onclick="logout()">Logout</button> -->
+
+    <script src="https://unpkg.com/@authgear/web@latest/dist/authgear-web.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

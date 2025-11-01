@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Virtual Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Global Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+        background-size: 400% 400%;
+        animation: bgAnimation 12s ease infinite;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    @keyframes bgAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Grid Layer */
+    .grid-lines {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px),
+            linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: moveGrid 20s linear infinite;
+        z-index: 0;
+    }
+
+    @keyframes moveGrid {
+        0% { background-position: 0 0; }
+        100% { background-position: 40px 40px; }
+    }
+
+    header {
+        text-align: center;
+        padding: 2rem 1rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+        color: #00d4ff;
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        background: rgba(0, 212, 255, 0.3);
+        transition: 0.3s;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    nav a:hover {
+        background: #00d4ff;
+        color: #000;
+        box-shadow: 0 0 15px #00d4ff;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    .card {
+        background: rgba(0,0,0,0.7);
+        border-radius: 12px;
+        padding: 2rem;
+        max-width: 800px;
+        width: 100%;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0,0,0,0.7);
+    }
+
+    h2 {
+        color: #00d4ff;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        border-bottom: 2px solid rgba(0,212,255,0.3);
+        padding-bottom: 0.5rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .highlight {
+        color: #00d4ff;
+        font-weight: 600;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    ul li {
+        background: rgba(0,212,255,0.1);
+        margin-bottom: 0.8rem;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    ul li:hover {
+        background: rgba(0,212,255,0.3);
+    }
+
+    footer {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        margin-top: 3rem;
+        background: rgba(0,0,0,0.6);
+        color: #00d4ff;
+        font-weight: 500;
+        border-top: 1px solid rgba(0,212,255,0.3);
+        position: relative;
+        z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            padding: 1.5rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="grid-lines"></div>
+
+    <header>
+        <h1>About Virtual Lab</h1>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>Project Concept</h2>
+            <p>
+                The <span class="highlight">Virtual Lab</span> project allows users to access and interact with an <span class="highlight">Operating System directly in their browser</span>. 
+                This provides a safe, educational environment where students and enthusiasts can experiment with OS features without needing a separate machine or installation.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Access a fully simulated OS environment online.</li>
+                <li>Run basic commands and explore file management safely.</li>
+                <li>Learn operating system concepts interactively.</li>
+                <li>No installation required; works directly in the browser.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Goal</h2>
+            <p>
+                Our goal is to make learning and experimenting with operating systems <span class="highlight">easy, interactive, and accessible to everyone</span>, whether in classrooms, remote learning setups, or personal exploration.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Virtual Lab Project. All Rights Reserved.
+    </footer>
+</body>
+</html>
