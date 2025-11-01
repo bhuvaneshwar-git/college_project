@@ -29,7 +29,7 @@ RUN touch /root/.Xauthority
 ENV RESOLUTION=800x600
 
 # Expose VNC port
-EXPOSE 5901 6081
+EXPOSE 5901 6080
 
 # Set the working directory in the container
 WORKDIR /app
