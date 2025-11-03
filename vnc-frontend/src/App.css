@@ -6,7 +6,6 @@ body {
   color: #d4d4d4;
 }
 
-/* Navbar */
 .navbar {
   background: #0f131a;
   box-shadow: 0 0 20px rgba(0, 255, 100, 0.2);
@@ -24,7 +23,6 @@ body {
   text-shadow: 0 0 10px #00ff66;
 }
 
-/* Main Section */
 .main-content {
   text-align: center;
   padding: 40px 20px;
@@ -37,7 +35,6 @@ body {
   margin-bottom: 40px;
 }
 
-/* OS Cards */
 .os-grid {
   display: flex;
   flex-wrap: wrap;
@@ -76,7 +73,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* Buttons */
 button {
   background: linear-gradient(90deg, #00ff88, #00cc66);
   border: none;
@@ -99,7 +95,6 @@ button:hover {
   color: #6affb7;
 }
 
-/* Footer */
 .footer {
   margin-top: 50px;
   padding: 20px;
