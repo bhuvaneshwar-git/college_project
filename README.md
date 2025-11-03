@@ -51,4 +51,4 @@ Note - run this command inside the vnc-frontend directory
 
 ## POC
 
- [![Watch the video](https://raw.githubusercontent.com/bhuvaneshwar-git/college_project/thumbnail.png)](https://raw.githubusercontent.com/bhuvaneshwar-git/college_project/poc.mp4)
+ [![Watch the video](https://raw.githubusercontent.com/bhuvaneshwar-git/college_project/thumbnail.png)](https://raw.githubusercontent.com/bhuvaneshwar-git/college_project/project_poc.mp4)
