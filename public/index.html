@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ubuntu Desktop Launcher</title>
+</head>
+<body>
+  <h1>Start Ubuntu Desktop Container</h1>
+  <p>Click the button to start your VNC-enabled Ubuntu container.</p>
+  <button id="startBtn">Start Container</button>
+  <div id="status"></div>
+
+  <script>
+    const startBtn = document.getElementById("startBtn");
+    const statusDiv = document.getElementById("status");
+
+    startBtn.addEventListener("click", async () => {
+      statusDiv.textContent = "Starting container... please wait a few seconds.";
+
+      try {
+        const res = await fetch("/start-container", { method: "POST" });
+        const data = await res.json();
+
+        if (data.success) {
+          statusDiv.textContent = "Container started! Redirecting to Ubuntu Desktop...";
+          // Wait a few seconds to let noVNC start properly
+          setTimeout(() => {
+            window.location.href = data.url;
+          }, 3000); // 3 seconds delay before redirect
+        } else {
+          statusDiv.textContent = "❌ Failed to start container.";
+        }
+      } catch (err) {
+        statusDiv.textContent = "⚠️ Error communicating with server.";
+      }
+    });
+  </script>
+</body>
+</html>
