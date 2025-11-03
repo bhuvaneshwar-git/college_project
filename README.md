@@ -51,7 +51,4 @@ Note - run this command inside the vnc-frontend directory
 
 ## POC
 
-### 🎬 Demo Video
-
-https://github.com/bhuvaneshwar-git/college_project/blob/main/project_poc.mp4
 
