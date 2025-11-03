@@ -24,8 +24,13 @@ Note - Before executing this command make sure you installed docker
 In vnc_kali directory 
 - open a terminal and type this command
   
-  ` docker build -t vnc_kali`
+  ` docker build -t vnc_kali .`
   
+In vnc_ubuntu directory  
+
+ - open a terminal and type this command
+   
+   ` docker build -t vnc_ubuntu .` 
   
 ## Fourth Step 
 Start the react and node application use the following command :
@@ -37,6 +42,7 @@ Note - run this command inside the vnc-frontend directory
  Run this command in inside the college_project directory 
 
  `node server.js` or `sudo node server.js`
+ 
 
  ## Fiveth Step 
  Copy & paste the url of react server in the browser
