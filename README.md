@@ -19,6 +19,15 @@ Clone the repo
  <img width="1060" height="443" alt="image" src="https://github.com/user-attachments/assets/3d1e51bb-c7b9-4134-9c2f-94dd26dd8f3b" />
 
 ## Third Step 
+Note - Before executing this command make sure you installed docker
+
+In vnc_kali directory 
+- open a terminal and type this command
+  
+  ` docker build -t vnc_kali`
+  
+  
+## Fourth Step 
 Start the react and node application use the following command :
 
 Note - run this command inside the vnc-frontend directory
@@ -29,7 +38,7 @@ Note - run this command inside the vnc-frontend directory
 
  `node server.js` or `sudo node server.js`
 
- ## Fourth Step 
+ ## Fiveth Step 
  Copy & paste the url of react server in the browser
  
  url - `http://localhost:5173/`
