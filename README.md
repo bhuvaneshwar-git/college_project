@@ -44,9 +44,11 @@ Note - run this command inside the vnc-frontend directory
  `node server.js` or `sudo node server.js`
  
 
- ## Fiveth Step 
+ ## Final Step 
  Copy & paste the url of react server in the browser
  
  url - `http://localhost:5173/`
 
- 
+## POC
+
+ [![Watch the video](https://raw.githubusercontent.com/bhuvaneshwar-git/college_project/main/path/to/thumbnail.jpg)](https://raw.githubusercontent.com/username/repository/branch/path/to/video.mp4)
