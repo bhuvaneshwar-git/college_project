@@ -9,15 +9,13 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
-// POST /start-container → start Ubuntu or Kali container
 app.post("/start-container", (req, res) => {
-  const os = req.query.os || "ubuntu"; // 👈 reads ?os=ubuntu or ?os=kali
+  const os = req.query.os || "ubuntu"; 
 
   let cmd = "";
   let url = "";
 
   if (os === "ubuntu") {
-    // ✅ Ubuntu container
     cmd = `
       docker rm -f vnc_ubuntu 2>/dev/null || true &&
       docker run -d -p 6081:6081 \
@@ -28,7 +26,6 @@ app.post("/start-container", (req, res) => {
     url = "http://localhost:6081/vnc.html";
 
   } else if (os === "kali") {
-    // ✅ Kali container
     cmd = `
       docker rm -f vnc_kali 2>/dev/null || true &&
       docker run -d -p 6080:6080 \
@@ -42,7 +39,7 @@ app.post("/start-container", (req, res) => {
     return res.status(400).json({ success: false, message: "Invalid OS specified" });
   }
 
-  console.log(`🚀 Starting ${os} container...`);
+  console.log(`Starting ${os} container...`);
   exec(cmd, (error, stdout, stderr) => {
     console.log("STDOUT:", stdout);
     console.error("STDERR:", stderr);
@@ -58,6 +55,6 @@ app.post("/start-container", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 
