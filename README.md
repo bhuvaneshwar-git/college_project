@@ -2,3 +2,8 @@
 - Docker
 - node js
 
+## first step 
+Clone the repo
+
+`git clone 
+`
