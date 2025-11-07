@@ -21,7 +21,6 @@ echo "Starting noVNC on port 6081..."
 websockify --web=/usr/share/novnc/ 6081 localhost:5901 &
 
 
-# ✅ Wait a few seconds to ensure XFCE is up before launching VS Code
 sleep 5
 
 echo "Launching Visual Studio Code..."
