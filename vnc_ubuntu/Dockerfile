@@ -8,14 +8,25 @@ ENV USER=root
 
 # Install XFCE, VNC server, dbus-x11, and xfonts-base
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget \
+    gnupg2 \
+    apt-transport-https \
+    software-properties-common \
     xfce4 \
     xfce4-goodies \
     tightvncserver \
     dbus-x11 \
     xfonts-base \
-    novnc  \
-    websockify  \
+    novnc \
+    websockify \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# ✅ Install Visual Studio Code
+RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
+    install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/ && \
+    sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' && \
+    apt-get update && apt-get install -y code && \
+    rm -f microsoft.gpg
 
 # Setup VNC server
 RUN mkdir /root/.vnc \

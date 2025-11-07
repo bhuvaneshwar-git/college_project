@@ -20,6 +20,14 @@ chmod +x /root/.vnc/xstartup
 echo "Starting noVNC on port 6081..."
 websockify --web=/usr/share/novnc/ 6081 localhost:5901 &
 
+
+# ✅ Wait a few seconds to ensure XFCE is up before launching VS Code
+sleep 5
+
+echo "Launching Visual Studio Code..."
+export DISPLAY=:1
+code --no-sandbox --disable-gpu --user-data-dir=/root/.vscode-root &
+
 echo "VNC + noVNC started! Access via http://<host-ip>:6081/vnc.html"
 tail -f /dev/null
 
