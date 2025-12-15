@@ -10,9 +10,7 @@ export default function App() {
     setStatus(`Starting ${os} container...`);
 
     try {
-const res = await fetch(`/api/start-container?os=${os}`, {
-  method: "POST",
-});
+      const res = await fetch(`http://localhost:3001/start-container?os=${os}`, { method: "POST" });
       const data = await res.json();
 
       setStatus(`${os} container started! Redirecting...`);
@@ -34,42 +32,44 @@ const res = await fetch(`/api/start-container?os=${os}`, {
       </header>
 
       <main className="main-content">
-        <h2>Choose Your Operating System</h2>
-        <div className="os-grid">
-          {/* Ubuntu */}
-          <div className="os-card">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo-ubuntu_cof-orange-hex.svg"
-              alt="Ubuntu"
-            />
-            <h3>Ubuntu Desktop</h3>
-            <p>A modern Linux environment with XFCE & noVNC interface.</p>
-            <button
-              onClick={() => startContainer("ubuntu")}
-              disabled={loading}
-            >
-              {loading ? "Starting..." : "Start Ubuntu"}
-            </button>
+        <div className="container">
+          <h2>Choose Your Operating System</h2>
+          <div className="os-grid">
+            {/* Ubuntu */}
+            <div className="os-card">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo-ubuntu_cof-orange-hex.svg"
+                alt="Ubuntu"
+              />
+              <h3>Ubuntu Desktop</h3>
+              <p>A modern Linux environment with XFCE & noVNC interface.</p>
+              <button
+                onClick={() => startContainer("ubuntu")}
+                disabled={loading}
+              >
+                {loading ? "Starting..." : "Start Ubuntu"}
+              </button>
+            </div>
+
+            {/* Kali Linux */}
+            <div className="os-card">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Kali-dragon-icon.svg"
+                alt="Kali Linux"
+              />
+              <h3>Kali Linux</h3>
+              <p>Security testing and ethical hacking Linux distribution.</p>
+              <button
+                onClick={() => startContainer("kali")}
+                disabled={loading}
+              >
+                {loading ? "Starting..." : "Start Kali"}
+              </button>
+            </div>
           </div>
 
-          {/* Kali Linux */}
-          <div className="os-card">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Kali-dragon-icon.svg"
-              alt="Kali Linux"
-            />
-            <h3>Kali Linux</h3>
-            <p>Security testing and ethical hacking Linux distribution.</p>
-            <button
-              onClick={() => startContainer("kali")}
-              disabled={loading}
-            >
-              {loading ? "Starting..." : "Start Kali"}
-            </button>
-          </div>
+          <p className="status">{status}</p>
         </div>
-
-        <p className="status">{status}</p>
       </main>
 
       <footer className="footer">
