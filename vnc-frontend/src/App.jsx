@@ -10,7 +10,9 @@ export default function App() {
     setStatus(`Starting ${os} container...`);
 
     try {
-      const res = await fetch(`http://localhost:3001/start-container?os=${os}`, { method: "POST" });
+      const res = await fetch(`/api/start-container?os=${os}`, {
+        method: "POST",
+});
       const data = await res.json();
 
       setStatus(`${os} container started! Redirecting...`);
