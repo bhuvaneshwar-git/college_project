@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xfonts-base \
     novnc \
     websockify \
+    ffmpeg \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
@@ -47,6 +48,11 @@ WORKDIR /app
 # Copy a script to start the VNC server
 COPY start-vnc.sh start-vnc.sh
 RUN chmod +x start-vnc.sh
+
+# Screen recorder
+COPY record.sh /app/record.sh
+RUN chmod +x /app/record.sh
+
 
 # List the contents of the /app directory
 RUN ls -a /app

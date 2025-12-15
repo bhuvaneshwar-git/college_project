@@ -23,7 +23,7 @@ app.post("/start-container", (req, res) => {
         -v /home/bhuvanesh/Documents/docker/vnc_ubuntu/persistence_storage/ubuntu:/root/Desktop/student \
         vnc_ubuntu
     `;
-    url = "http://localhost:6081/vnc.html";
+    url = "/vnc/ubuntu/vnc.html";
 
   } else if (os === "kali") {
     cmd = `
@@ -33,7 +33,7 @@ app.post("/start-container", (req, res) => {
         -v /home/bhuvanesh/Documents/docker/vnc_ubuntu/persistence_storage/kali:/root/Desktop/student \
         vnc_kali
     `;
-    url = "http://localhost:6080/vnc.html";
+    url = "/vnc/kali/vnc.html";
 
   } else {
     return res.status(400).json({ success: false, message: "Invalid OS specified" });
@@ -57,4 +57,3 @@ app.post("/start-container", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
-

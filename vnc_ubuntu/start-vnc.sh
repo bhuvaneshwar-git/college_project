@@ -30,3 +30,5 @@ code --no-sandbox --disable-gpu --user-data-dir=/root/.vscode-root &
 echo "VNC + noVNC started! Access via http://<host-ip>:6081/vnc.html"
 tail -f /dev/null
 
+echo "Starting screen recording..."
+/app/record.sh &
