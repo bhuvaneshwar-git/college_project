@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
 
 # Setup VNC server
 RUN mkdir /root/.vnc \
-    && echo "" | vncpasswd -f > /root/.vnc/passwd \
+    && echo "Spiher@2025" | vncpasswd -f > /root/.vnc/passwd \
     && chmod 600 /root/.vnc/passwd
 
 # Create an .Xauthority file

@@ -30,7 +30,7 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
 
 # Setup VNC server
 RUN mkdir /root/.vnc \
-    && echo "" | vncpasswd -f > /root/.vnc/passwd \
+    && echo "Spiher@2025" | vncpasswd -f > /root/.vnc/passwd \
     && chmod 600 /root/.vnc/passwd
 
 # Create an .Xauthority file
