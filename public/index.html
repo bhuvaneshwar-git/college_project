@@ -1,39 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ubuntu Desktop Launcher</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser-Based Virtual OS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .user-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .control-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .control-panel h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .os-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .os-card {
+            flex: 1;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .os-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .os-card.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .os-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .os-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-stop {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-stop:hover {
+            background: #d32f2f;
+        }
+
+        .btn-stop:disabled,
+        .btn-start:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .vnc-container {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .vnc-container.show {
+            display: block;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <h1>Start Ubuntu Desktop Container</h1>
-  <p>Click the button to start your VNC-enabled Ubuntu container.</p>
-  <button id="startBtn">Start Container</button>
-  <div id="status"></div>
+    <div class="header">
+        <h1>🖥️ Browser-Based Virtual OS</h1>
+        <p>Access your isolated Linux desktop environment from anywhere</p>
+        <div class="user-info" id="userInfo">User ID: Loading...</div>
+    </div>
 
-  <script>
-    const startBtn = document.getElementById("startBtn");
-    const statusDiv = document.getElementById("status");
+    <div class="container">
+        <div class="control-panel">
+            <h2>Launch Your Virtual Desktop</h2>
+            
+            <div class="status" id="status"></div>
+            
+            <div class="os-selector">
+                <div class="os-card selected" data-os="ubuntu">
+                    <h3>🐧 Ubuntu</h3>
+                    <p>Popular Linux distribution with XFCE desktop</p>
+                </div>
+                <div class="os-card" data-os="kali">
+                    <h3>🔒 Kali Linux</h3>
+                    <p>Security-focused distribution</p>
+                </div>
+            </div>
 
-    startBtn.addEventListener("click", async () => {
-      statusDiv.textContent = "Starting container... please wait a few seconds.";
+            <div class="actions">
+                <button class="btn-start" id="startBtn">Start Virtual Desktop</button>
+                <button class="btn-stop" id="stopBtn" disabled>Stop Session</button>
+            </div>
+        </div>
 
-      try {
-        const res = await fetch("/start-container", { method: "POST" });
-        const data = await res.json();
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Starting your virtual desktop...</p>
+        </div>
 
-        if (data.success) {
-          statusDiv.textContent = "Container started! Redirecting to Ubuntu Desktop...";
-          // Wait a few seconds to let noVNC start properly
-          setTimeout(() => {
-            window.location.href = data.url;
-          }, 3000); // 3 seconds delay before redirect
-        } else {
-          statusDiv.textContent = "❌ Failed to start container.";
+        <div class="vnc-container" id="vncContainer">
+            <iframe id="vncFrame"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3001';
+        let userId = localStorage.getItem('userId');
+        let selectedOS = 'ubuntu';
+        let currentSession = null;
+
+        // Generate or retrieve user ID
+        if (!userId) {
+            userId = generateUserId();
+            localStorage.setItem('userId', userId);
         }
-      } catch (err) {
-        statusDiv.textContent = "⚠️ Error communicating with server.";
-      }
-    });
-  </script>
+
+        function generateUserId() {
+            return 'user_' + Math.random().toString(36).substring(2, 15) + 
+                   Math.random().toString(36).substring(2, 15);
+        }
+
+        document.getElementById('userInfo').textContent = `User ID: ${userId.substring(0, 20)}...`;
+
+        // OS selection
+        document.querySelectorAll('.os-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.os-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedOS = card.dataset.os;
+            });
+        });
+
+        // Start button
+        document.getElementById('startBtn').addEventListener('click', async () => {
+            const startBtn = document.getElementById('startBtn');
+            const loading = document.getElementById('loading');
+            
+            startBtn.disabled = true;
+            loading.classList.add('show');
+            hideStatus();
+
+            try {
+                const response = await fetch(`${API_URL}/start-container?os=${selectedOS}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-User-ID': userId
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    currentSession = data;
+                    showStatus(data.message || 'Virtual desktop started successfully!', 'success');
+                    
+                    // Load VNC interface
+                    setTimeout(() => {
+                        const vncFrame = document.getElementById('vncFrame');
+                        vncFrame.src = data.url;
+                        document.getElementById('vncContainer').classList.add('show');
+                        loading.classList.remove('show');
+                        document.getElementById('stopBtn').disabled = false;
+                    }, 2000);
+                } else {
+                    showStatus(data.message || 'Failed to start container', 'error');
+                    loading.classList.remove('show');
+                    startBtn.disabled = false;
+                }
+            } catch (error) {
+                showStatus('Error connecting to server: ' + error.message, 'error');
+                loading.classList.remove('show');
+                startBtn.disabled = false;
+            }
+        });
+
+        // Stop button
+        document.getElementById('stopBtn').addEventListener('click', async () => {
+            if (!confirm('Are you sure you want to stop your session? Your data will be saved.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/stop-container`, {
+                    method: 'POST',
+                    headers: {
+                        'X-User-ID': userId
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showStatus('Session stopped. Your data has been saved.', 'info');
+                    document.getElementById('vncContainer').classList.remove('show');
+                    document.getElementById('startBtn').disabled = false;
+                    document.getElementById('stopBtn').disabled = true;
+                    currentSession = null;
+                }
+            } catch (error) {
+                showStatus('Error stopping session: ' + error.message, 'error');
+            }
+        });
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type} show`;
+        }
+
+        function hideStatus() {
+            document.getElementById('status').classList.remove('show');
+        }
+
+        // Check for existing session on load
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch(`${API_URL}/session-info`, {
+                    headers: {
+                        'X-User-ID': userId
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.hasSession) {
+                    showStatus('Reconnecting to existing session...', 'info');
+                    currentSession = data.session;
+                    document.getElementById('vncFrame').src = data.session.url;
+                    document.getElementById('vncContainer').classList.add('show');
+                    document.getElementById('stopBtn').disabled = false;
+                }
+            } catch (error) {
+                console.error('Error checking session:', error);
+            }
+        });
+    </script>
 </body>
 </html>
