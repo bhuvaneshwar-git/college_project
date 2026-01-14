@@ -1,51 +1,53 @@
-# Use an official Ubuntu base image
 FROM kalilinux/kali-rolling
 
-# Avoid warnings by switching to noninteractive for the build process
 ENV DEBIAN_FRONTEND=noninteractive
-
 ENV USER=root
 
-RUN echo "deb http://mirror.karneval.cz/pub/linux/kali kali-rolling main contrib non-free non-free-firmware" > /etc/apt/sources.list
-
-# Install XFCE, VNC server, dbus-x11, and xfonts-base
-RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
-    xfce4 \
-    xfce4-goodies \
-    tightvncserver \
+# Install XFCE desktop with Kali theme
+RUN apt update && apt install -y \
+    kali-desktop-xfce \
+    tigervnc-standalone-server \
+    novnc \
+    websockify \
     dbus-x11 \
-    xfonts-base \
-    novnc  \
-    websockify  \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    x11-xserver-utils \
+    kali-wallpapers-all \
+    firefox-esr \
+    net-tools \
+    curl \
+    wget \
+    vim \
+    nano \
+    git \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Setup VNC server
-RUN mkdir /root/.vnc \
-    && echo "Spiher@2025" | vncpasswd -f > /root/.vnc/passwd \
-    && chmod 600 /root/.vnc/passwd
+# Setup VNC directories (no password needed)
+RUN mkdir -p /root/.vnc && \
+    touch /root/.Xauthority
 
-# Create an .Xauthority file
-RUN touch /root/.Xauthority
+# Create Desktop directory for user files
+RUN mkdir -p /root/Desktop/student
 
-# Set display resolution (change as needed)
+# Set default display resolution
 ENV RESOLUTION=1400x600
 
-# Expose VNC port
+# Expose VNC and noVNC ports
 EXPOSE 5901 6080
 
-
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# --- Auto-connect patch for noVNC ---
-RUN sed -i 's@UI.start();@UI.connect("localhost", 5901, { encrypt: false });@' /usr/share/novnc/app/ui.js
+# Copy startup script
+COPY start-vnc.sh /app/start-vnc.sh
+RUN chmod +x /app/start-vnc.sh
 
-# Copy a script to start the VNC server
-COPY start-vnc.sh start-vnc.sh
-RUN chmod +x start-vnc.sh
+# Create xstartup for XFCE
+RUN echo '#!/bin/bash' > /root/.vnc/xstartup && \
+    echo 'unset SESSION_MANAGER' >> /root/.vnc/xstartup && \
+    echo 'unset DBUS_SESSION_BUS_ADDRESS' >> /root/.vnc/xstartup && \
+    echo 'exec startxfce4' >> /root/.vnc/xstartup && \
+    chmod +x /root/.vnc/xstartup
 
-# List the contents of the /app directory
-
-RUN ls -a /app
+# Start VNC server
 CMD ["/app/start-vnc.sh"]
-

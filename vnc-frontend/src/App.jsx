@@ -65,7 +65,7 @@ export default function App() {
                 onClick={() => startContainer("kali")}
                 disabled={loading}
               >
-                {loading ? "Starting..." : "Start Kali"}
+                {loading ? "Starting..." : "Start parrot"}
               </button>
             </div>
           </div>
