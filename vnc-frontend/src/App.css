@@ -1,112 +1,13 @@
-
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #0b0f14;
-  color: #d4d4d4;
-  justify-content: center; /* centers horizontally */
-  align-items: center; 
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.navbar {
-  background: #0f131a;
-  box-shadow: 0 0 20px rgba(0, 255, 100, 0.2);
-  padding: 20px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+* {
+  box-sizing: border-box;
 }
 
-.navbar h1 {
-  margin: 0;
-  color: #9dfc8b;
-  font-size: 2rem;
-  text-shadow: 0 0 10px #00ff66;
-}
-
-.main-content {
-  text-align: center;
-  padding: 40px 10px;
-  background: radial-gradient(circle at 30% 20%, #0b141b, #050709 80%);
-  min-height: 100vh;
-}
-
-.main-content h2 {
-  color: #6affb7;
-  margin-bottom: 40px;
-}
-
-.os-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-}
-
-.os-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 255, 100, 0.1);
-  border-radius: 12px;
-  width: 260px;
-  padding: 30px 20px;
-  box-shadow: 0 0 20px rgba(0, 255, 100, 0.05);
-  transition: 0.3s;
-}
-
-.os-card:hover {
-  box-shadow: 0 0 25px rgba(0, 255, 100, 0.2);
-  transform: translateY(-8px);
-}
-
-.os-card img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
-}
-
-.os-card h3 {
-  color: #a3ffcb;
-  margin-bottom: 10px;
-}
-
-.os-card p {
-  color: #a1a1a1;
-  font-size: 0.9rem;
-}
-
-button {
-  background: linear-gradient(90deg, #00ff88, #00cc66);
-  border: none;
-  color: #000;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: linear-gradient(90deg, #00cc66, #00ff88);
-  box-shadow: 0 0 15px #00ff66;
-}
-
-.status {
-  margin-top: 25px;
-  font-weight: bold;
-  color: #6affb7;
-}
-
-.footer {
-  margin-top: 50px;
-  padding: 20px;
-  border-top: 1px solid rgba(0, 255, 100, 0.1);
-  color: #7affb7;
-  background: #0f131a;
-}
-.container {
-  max-width: 1400px;  /* controls side space */
-  margin: 0 auto;    /* centers container */
-  width: 100%;
-}
-
+/* Optional: Add Inter font import at the top of your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
