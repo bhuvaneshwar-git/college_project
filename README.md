@@ -16,7 +16,9 @@ Clone the repo
  
  Edit - `server.js`
  
- <img width="1060" height="443" alt="image" src="https://github.com/user-attachments/assets/3d1e51bb-c7b9-4134-9c2f-94dd26dd8f3b" />
+ <img width="737" height="216" alt="persistence_storage" src="https://github.com/user-attachments/assets/0170f3f1-90c5-413d-a2af-d00bef2123f2" />
+
+
 
 ## Third Step 
 Note - Before executing this command make sure you installed docker
