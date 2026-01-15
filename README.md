@@ -26,9 +26,11 @@ Authgear setup
 create a .env file in vnc-frontend directory in the below format 
 
 .env file :
-``VITE_AUTHGEAR_ENDPOINT=https://xyz.authgear.cloud  
-  VITE_AUTHGEAR_CLIENT_ID=``
- 
+
+```
+VITE_AUTHGEAR_ENDPOINT=https://xyz.authgear.cloud  
+VITE_AUTHGEAR_CLIENT_ID=
+``` 
 ## Third Step
  Make sure you modify persistence storage path according to your system 
  
