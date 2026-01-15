@@ -23,14 +23,23 @@ Authgear setup
 3. Set redirect URI: http://localhost:5173/callback
 4. Copy Client ID and Endpoint to .env files
 
-create a .env file in vnc-frontend directory in the below format 
+create a .env file in vnc-frontend directory 
 
 .env file :
 
 ```
 VITE_AUTHGEAR_ENDPOINT=https://your-app.authgear.cloud
 VITE_AUTHGEAR_CLIENT_ID=your_client_id
-``` 
+```
+create .env file in backend directory
+
+.env file:
+```
+AUTHGEAR_ENDPOINT=https://your-app.authgear.cloud
+AUTHGEAR_CLIENT_ID=your_client_id
+PORT=3001
+USER_DATA_DIR=/home/ubuntu/user_data
+```
 ## Third Step
  Make sure you modify persistence storage path according to your system 
  
@@ -74,7 +83,6 @@ Note - run this command inside the vnc-frontend directory
 ## POC
 
 
-https://github.com/user-attachments/assets/3955f7d7-681a-42b9-be19-fb41f3b0fdf2
 
 
 
