@@ -26,9 +26,9 @@ Authgear setup
 create a .env file in vnc-frontend directory in the below format 
 
 .env file :
-`VITE_AUTHGEAR_ENDPOINT=https://xyz.authgear.cloud
-VITE_AUTHGEAR_CLIENT_ID=
-`
+``VITE_AUTHGEAR_ENDPOINT=https://xyz.authgear.cloud  
+  VITE_AUTHGEAR_CLIENT_ID=``
+ 
 ## Third Step
  Make sure you modify persistence storage path according to your system 
  
@@ -52,7 +52,7 @@ In vnc_parrot directory
    
    ` docker build -t vnc_parrot .` 
   
-## Fourth Step 
+## Fiveth Step 
 Start the react and node application use the following command :
 
 Note - run this command inside the vnc-frontend directory
