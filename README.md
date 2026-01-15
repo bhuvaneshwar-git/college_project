@@ -1,7 +1,11 @@
 #### Note - Before cloning this repo please make sure you have installed the following softwares in your system 
 - Docker
 - node js
+- react 
+- vite ( for local deployement )
+- sqlite ( database )
 - git
+- Authgear ( for authetication ) no installation needed 
 
 ## First Step 
 Clone the repo
@@ -11,7 +15,21 @@ Clone the repo
 
  ` cd college_project
  `
- ## Second Step
+## second Step 
+Authgear setup
+
+1. Sign up at portal.authgear.com
+2. Create a Single Page Application
+3. Set redirect URI: http://localhost:5173/callback
+4. Copy Client ID and Endpoint to .env files
+
+create a .env file in vnc-frontend directory in the below format 
+
+.env file :
+`VITE_AUTHGEAR_ENDPOINT=https://xyz.authgear.cloud
+VITE_AUTHGEAR_CLIENT_ID=
+`
+## Third Step
  Make sure you modify persistence storage path according to your system 
  
  Edit - `server.js`
@@ -20,7 +38,7 @@ Clone the repo
 
 
 
-## Third Step 
+## Fourth Step 
 Note - Before executing this command make sure you installed docker
 
 In vnc_kali directory 
@@ -28,11 +46,11 @@ In vnc_kali directory
   
   ` docker build -t vnc_kali .`
   
-In vnc_ubuntu directory  
+In vnc_parrot directory  
 
  - open a terminal and type this command
    
-   ` docker build -t vnc_ubuntu .` 
+   ` docker build -t vnc_parrot .` 
   
 ## Fourth Step 
 Start the react and node application use the following command :
