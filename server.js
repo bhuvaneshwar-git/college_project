@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const activeSessions = new Map();
 const BASE_PORT = 7000;
 const NOVNC_BASE_PORT = 8000;
-const USER_DATA_DIR = "/home/bhuvanesh/Documents/docker/vnc_ubuntu/test_persistence/user_data";
+const USER_DATA_DIR = "/home/bhuvanesh/Documents/docker/vnc_ubuntu/persistence_storage/user_data";
 
 // Ensure user data directory exists
 if (!fs.existsSync(USER_DATA_DIR)) {
