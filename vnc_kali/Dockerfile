@@ -42,6 +42,10 @@ WORKDIR /app
 COPY start-vnc.sh /app/start-vnc.sh
 RUN chmod +x /app/start-vnc.sh
 
+# Copy control panel files
+COPY vnc-control-panel.js /app/vnc-control-panel.js
+COPY vnc-control-styles.css /app/vnc-control-styles.css
+
 # Create xstartup for XFCE
 RUN echo '#!/bin/bash' > /root/.vnc/xstartup && \
     echo 'unset SESSION_MANAGER' >> /root/.vnc/xstartup && \

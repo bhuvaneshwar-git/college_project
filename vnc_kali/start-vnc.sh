@@ -62,6 +62,42 @@ else
     ps aux | grep Xtigervnc
 fi
 
+# ============= INJECT CONTROL PANEL INTO NOVNC =============
+echo "Injecting control panel into noVNC..."
+
+# Find noVNC vnc.html file
+NOVNC_HTML="/usr/share/novnc/vnc.html"
+
+if [ -f "$NOVNC_HTML" ]; then
+    # Backup original if not already backed up
+    if [ ! -f "${NOVNC_HTML}.original" ]; then
+        cp "$NOVNC_HTML" "${NOVNC_HTML}.original"
+        echo "✓ Backed up original vnc.html"
+    fi
+    
+    # Copy control panel files to noVNC directory
+    cp /app/vnc-control-panel.js /usr/share/novnc/
+    cp /app/vnc-control-styles.css /usr/share/novnc/
+    
+    # Inject control panel into vnc.html (before </body>)
+    if ! grep -q "vnc-control-panel.js" "$NOVNC_HTML"; then
+        sed -i 's|</body>|<link rel="stylesheet" href="vnc-control-styles.css">\n<script src="vnc-control-panel.js"></script>\n</body>|' "$NOVNC_HTML"
+        echo "✓ Control panel injected into noVNC"
+    else
+        echo "✓ Control panel already injected"
+    fi
+else
+    echo "⚠ Warning: noVNC HTML file not found at $NOVNC_HTML"
+    # Try alternative locations
+    for alt_path in "/usr/share/novnc/vnc_lite.html" "/opt/novnc/vnc.html"; do
+        if [ -f "$alt_path" ]; then
+            echo "Found noVNC at: $alt_path"
+            NOVNC_HTML="$alt_path"
+            break
+        fi
+    done
+fi
+
 # Start websockify for noVNC
 echo "Starting websockify on port 6080..."
 websockify --web=/usr/share/novnc/ 6080 localhost:5901 &
@@ -71,6 +107,7 @@ sleep 2
 echo ""
 echo "=== Kali Linux Desktop Ready ==="
 echo "✓ Kali XFCE Desktop Environment is running!"
+echo "✓ VNC Control Panel injected and ready!"
 echo "Access noVNC at: http://localhost:6080/vnc.html"
 echo "Direct VNC port: 5901"
 echo ""

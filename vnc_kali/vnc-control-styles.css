@@ -1,0 +1,389 @@
+/* VNC Control Panel Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+    --vnc-primary: #3b82f6;
+    --vnc-primary-dark: #2563eb;
+    --vnc-warning: #f59e0b;
+    --vnc-danger: #ef4444;
+    --vnc-success: #10b981;
+    --vnc-bg-dark: #0f172a;
+    --vnc-bg-darker: #020617;
+    --vnc-text: #f1f5f9;
+    --vnc-text-muted: #94a3b8;
+    --vnc-border: rgba(148, 163, 184, 0.2);
+    --vnc-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* Control Bar */
+.vnc-control-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.95));
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--vnc-border);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99999;
+    box-shadow: 0 -4px 20px var(--vnc-shadow);
+    font-family: 'Space Grotesk', sans-serif;
+    animation: vnc-slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes vnc-slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.vnc-control-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.vnc-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--vnc-text-muted);
+}
+
+.vnc-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--vnc-success);
+    box-shadow: 0 0 12px var(--vnc-success);
+    animation: vnc-pulse 2s infinite;
+}
+
+@keyframes vnc-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.vnc-session-info {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--vnc-text-muted);
+    padding: 6px 12px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.vnc-control-right {
+    display: flex;
+    gap: 12px;
+}
+
+/* Buttons */
+.vnc-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.vnc-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.vnc-btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.vnc-btn-pause {
+    background: var(--vnc-warning);
+    color: white;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.vnc-btn-pause:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.vnc-btn-power {
+    background: var(--vnc-danger);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.vnc-btn-power:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.vnc-btn-secondary {
+    background: rgba(148, 163, 184, 0.2);
+    color: var(--vnc-text);
+    border: 1px solid var(--vnc-border);
+}
+
+.vnc-btn-secondary:hover {
+    background: rgba(148, 163, 184, 0.3);
+    transform: translateY(-2px);
+}
+
+.vnc-btn-confirm {
+    background: var(--vnc-primary);
+    color: white;
+}
+
+.vnc-btn-confirm:hover {
+    background: var(--vnc-primary-dark);
+    transform: translateY(-2px);
+}
+
+.vnc-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+.vnc-icon-large {
+    width: 32px;
+    height: 32px;
+}
+
+/* Modal Overlay */
+.vnc-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    animation: vnc-fadeIn 0.3s;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.vnc-modal-overlay.vnc-active {
+    display: flex;
+}
+
+@keyframes vnc-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Modal */
+.vnc-modal {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--vnc-border);
+    animation: vnc-slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    color: var(--vnc-text);
+}
+
+@keyframes vnc-slideIn {
+    from {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.vnc-modal-header {
+    margin-bottom: 24px;
+}
+
+.vnc-modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--vnc-text);
+}
+
+.vnc-modal-subtitle {
+    font-size: 14px;
+    color: var(--vnc-text-muted);
+}
+
+.vnc-modal-content {
+    margin-bottom: 24px;
+}
+
+.vnc-info-box {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.vnc-info-box.vnc-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.vnc-info-box.vnc-danger {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.vnc-info-item {
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.vnc-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.vnc-info-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.vnc-info-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--vnc-text-muted);
+}
+
+.vnc-info-text strong {
+    color: var(--vnc-text);
+    font-weight: 600;
+}
+
+.vnc-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* Welcome Modal */
+.vnc-welcome-modal {
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.vnc-welcome-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.vnc-welcome-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--vnc-primary) 0%, var(--vnc-primary-dark) 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.vnc-features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.vnc-feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--vnc-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: start;
+}
+
+.vnc-feature-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.vnc-feature-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--vnc-text);
+}
+
+.vnc-feature-content p {
+    font-size: 13px;
+    color: var(--vnc-text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .vnc-control-bar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    .vnc-control-left,
+    .vnc-control-right {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .vnc-modal {
+        padding: 24px;
+        margin: 20px;
+    }
+}
