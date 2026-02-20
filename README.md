@@ -1,3 +1,4 @@
+Detailed Documentation - [Documentation](https://bhuvaneshwar-git.github.io/posts/college-project-documentation/)
 ## Prerequisites
 - Docker
 - node js
